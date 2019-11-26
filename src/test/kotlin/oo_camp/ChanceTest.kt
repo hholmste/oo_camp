@@ -3,6 +3,7 @@ package oo_camp
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
 
 internal class ChanceTest {
 
@@ -43,6 +44,13 @@ internal class ChanceTest {
     @Test
     internal fun `hashcode should encode the hash`() {
         assertEquals(1.0.chance().hashCode(), 1.chance().hashCode())
+    }
+
+    @Test
+    internal fun equals() {
+        assertEquals(0.333.chance(), 0.333.chance())
+        assertFalse(0.333.chance() == null)
+        assertFalse(0.333.chance().equals( "not a chance"))
     }
 
 }

@@ -1,6 +1,7 @@
 package oo_camp
 
 import kotlin.math.abs
+import kotlin.math.absoluteValue
 
 /**
  * Understands the probability of something occurring.
@@ -19,7 +20,7 @@ class Chance(fraction: Number) {
     override fun equals(other: Any?) =
         when (other) {
             null -> false
-            is Chance -> abs(this.fraction - other.fraction) < marginOfError
+            is Chance -> (this.fraction - other.fraction).absoluteValue < marginOfError
             else -> false
         }
 
@@ -28,7 +29,7 @@ class Chance(fraction: Number) {
     override fun toString() = "Chance(p=$fraction)"
 
     companion object {
-        const val marginOfError = 0.00001;
+        const val marginOfError = 0.000000000001;
     }
 }
 
