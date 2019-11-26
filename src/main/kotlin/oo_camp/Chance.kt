@@ -1,7 +1,7 @@
 package oo_camp
 
 /**
- * Understands the probability of something occuring.
+ * Understands the probability of something occurring.
  */
 class Chance(fraction: Number) {
     private val fraction = fraction.toDouble()
