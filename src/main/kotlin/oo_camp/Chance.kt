@@ -16,6 +16,10 @@ class Chance(fraction: Number) {
 
     infix fun and(other: Chance) = Chance(this.fraction * other.fraction)
 
+    infix fun inclusiveOr(other: Chance) = (this.fraction + other.fraction - (this and other).fraction).chance
+
+    infix fun exclusiveOr(other: Chance) = (this.fraction + other.fraction).chance
+
     override fun equals(other: Any?) = other is Chance && ((this.fraction - other.fraction).absoluteValue < marginOfError)
 
     override fun hashCode() = fraction.hashCode()

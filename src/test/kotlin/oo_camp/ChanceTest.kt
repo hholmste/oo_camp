@@ -52,4 +52,19 @@ internal class ChanceTest {
         assertFalse(0.333.chance.equals( null))
         assertFalse(0.333.chance.equals("not a chance"))
     }
+
+    @Test
+    internal fun inclusiveOr() {
+        assertEquals((16/52).chance, (4/52).chance inclusiveOr (13/52).chance)
+        assertEquals(.68.chance, .2.chance inclusiveOr .6.chance)
+        assertEquals(1.chance, .001.chance inclusiveOr 1.chance)
+        assertEquals(1.chance, 0.chance inclusiveOr 1.chance)
+    }
+
+    @Test
+    internal fun exclusiveOr() {
+        assertEquals((2/52).chance, (1/52).chance exclusiveOr (1/52).chance)
+        assertEquals((6/52).chance, (5/52).chance exclusiveOr (1/52).chance)
+        assertEquals((1/52).chance, (0).chance exclusiveOr (1/52).chance)
+    }
 }
