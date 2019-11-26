@@ -1,6 +1,5 @@
 package oo_camp
 
-import kotlin.math.abs
 import kotlin.math.absoluteValue
 
 /**
@@ -13,16 +12,11 @@ class Chance(fraction: Number) {
         require(this.fraction in 0.0..1.0)
     }
 
-    operator fun not(): Chance = Chance(1.0 - fraction)
+    operator fun not() = Chance(1.0 - fraction)
 
-    infix fun and(that: Chance) = Chance(this.fraction * that.fraction)
+    infix fun and(other: Chance) = Chance(this.fraction * other.fraction)
 
-    override fun equals(other: Any?) =
-        when (other) {
-            null -> false
-            is Chance -> (this.fraction - other.fraction).absoluteValue < marginOfError
-            else -> false
-        }
+    override fun equals(other: Any?) = other is Chance && ((this.fraction - other.fraction).absoluteValue < marginOfError)
 
     override fun hashCode() = fraction.hashCode()
 
@@ -33,4 +27,4 @@ class Chance(fraction: Number) {
     }
 }
 
-internal fun Number.chance() = Chance(this)
+internal val Number.chance get () = Chance(this)
