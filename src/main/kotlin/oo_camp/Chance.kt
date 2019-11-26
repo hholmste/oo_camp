@@ -23,4 +23,6 @@ class Chance(fraction: Number) {
     override fun hashCode() = fraction.hashCode()
 
     override fun toString() = "Chance(p=$fraction)"
+
 }
+internal fun Number.chance() = Chance(this)
