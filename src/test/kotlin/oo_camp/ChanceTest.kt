@@ -2,6 +2,7 @@ package oo_camp
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 internal class ChanceTest {
@@ -25,6 +26,14 @@ internal class ChanceTest {
         assertFailsWith<IllegalArgumentException> {
             Chance(1.00001)
         }
+    }
+
+    @Test
+    internal fun `and multiplies the chance-fractions`() {
+        assertEquals(Chance(0.25), Chance(0.5) and Chance(0.5))
+        assertEquals(Chance(0.0), Chance(0.5) and Chance(0))
+        assertEquals(Chance(0.0), Chance(0.0) and Chance(1))
+        assertEquals(Chance(1), Chance(1) and Chance(1))
     }
 
 }

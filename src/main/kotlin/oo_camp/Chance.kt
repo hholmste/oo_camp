@@ -11,6 +11,8 @@ class Chance(fraction: Number) {
 
     operator fun not(): Chance = Chance(1.0 - fraction)
 
+    infix fun and(that: Chance) = Chance(this.fraction * that.fraction)
+
     override fun equals(other: Any?) =
         when (other) {
             null -> false
