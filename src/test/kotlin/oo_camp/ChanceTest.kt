@@ -35,4 +35,14 @@ internal class ChanceTest {
         assertEquals(1.chance(), 1.chance() and 1.chance())
     }
 
+    @Test
+    internal fun `equals should handle floating point precision hell`() {
+        assertEquals(0.3.chance(), !!0.3.chance())
+    }
+
+    @Test
+    internal fun `hashcode should encode the hash`() {
+        assertEquals(1.0.chance().hashCode(), 1.chance().hashCode())
+    }
+
 }

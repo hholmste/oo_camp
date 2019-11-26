@@ -1,10 +1,13 @@
 package oo_camp
 
+import kotlin.math.abs
+
 /**
  * Understands the probability of something occurring.
  */
 class Chance(fraction: Number) {
     private val fraction = fraction.toDouble()
+
     init {
         require(this.fraction in 0.0..1.0)
     }
@@ -16,7 +19,7 @@ class Chance(fraction: Number) {
     override fun equals(other: Any?) =
         when (other) {
             null -> false
-            is Chance -> this.fraction == other.fraction
+            is Chance -> abs(this.fraction - other.fraction) < marginOfError
             else -> false
         }
 
@@ -24,5 +27,9 @@ class Chance(fraction: Number) {
 
     override fun toString() = "Chance(p=$fraction)"
 
+    companion object {
+        const val marginOfError = 0.00001;
+    }
 }
+
 internal fun Number.chance() = Chance(this)
